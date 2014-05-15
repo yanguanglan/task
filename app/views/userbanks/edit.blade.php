@@ -1,0 +1,1 @@
+/Users/lan/Sites/task/app/views/userDetails/edit.blade.php

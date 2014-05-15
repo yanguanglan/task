@@ -1,0 +1,9 @@
+User:
+username:string, nickname:string, password:string, avatar:string, phone:string, email:string, surplus_coin_num:integer, cash_coin_num:integer, weixin:string, sinaweibo:string, tencentweibo:string, qq:string, qqzone:string, douban:string, renren:string
+
+Merchant:
+merchantCover:string, merchantName:string, merchantPhone:string, merchantMobile:string, merchantAddress:string, merchantInstruction:text, merchantUrl:string
+
+Task:
+taskName:string, taskCover:string, receiveCount:integer, incomeCoins:integer, bailCoins:integer, fineCoins:integer, periodDaysCount:integer, transmitCount:integer, dailyTransmitCount:integer, taskStartDate:datetime, taskEndDate:datetime, taskInstruction:text, merchant_id:integer, type:boolean, detailType:boolean
+

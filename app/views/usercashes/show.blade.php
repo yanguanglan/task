@@ -1,0 +1,1 @@
+/Users/lan/Sites/task/app/views/usercashes/show.blade.php
