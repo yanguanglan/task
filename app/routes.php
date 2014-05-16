@@ -31,9 +31,12 @@ Route::group(array('prefix' => 'v1'), function()
 	Route::get('smscode/{phone}', 'UsersController@getSmscode');
 	#注册
 	Route::post('register', 'UsersController@postRegister');
-
+	#修改密码
+	Route::post('password', 'UsersController@postPassword');
+	
 	Route::group(array('before' => 'auth.api'), function()
-	{
+	{	
+
 		Route::resource('users', 'UsersController');
 		Route::resource('tasks', 'TasksController');
 		Route::resource('Merchants', 'MerchantsController');

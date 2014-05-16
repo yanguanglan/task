@@ -121,6 +121,42 @@ class UsersController extends \BaseController {
 
 	}
 
+	public function postPassword()
+	{
+
+				$phone = Input::get('phone');
+				$password = Input::get('password');
+				$smscode = Input::get('smscode');
+				$rand = rand(0,1);
+				if($rand) {
+					$time = time() - 3600;
+					$time = date('Y-m-d H:i:s', $time);
+					#删除过期验证码
+					Smscode::where('created_at', '<', $time)->delete();
+				}
+
+				$code = Smscode::where('phone', $phone)->where('smscode', $smscode)->first();
+
+				if($code) {
+					Smscode::find($code->id)->delete();
+					$user = User::where('phone', $phone)->first();
+					if($user) 
+					{
+						$user->password= Hash::make($password);
+						$user->save();
+						return Response::json(array('errorno'=>'0', 'errormsg'=>'修改密码成功', 'data'=>$user->toArray(), 'totalCount'=>1));
+				    }
+				    else
+				    {
+				    	return Response::json(array('errorno'=>'1005', 'errormsg'=>'手机号码不存在', 'data'=>array(), 'totalCount'=>0));
+				    }
+					
+				} else {
+					#验证码不正确
+					return Response::json(array('errorno'=>'1005', 'errormsg'=>'验证码错误', 'data'=>array(), 'totalCount'=>0));
+				}
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
