@@ -32,7 +32,7 @@ class UsersController extends \BaseController {
 			return Response::json(array('errorno'=>'0', 
 				                        'errormsg'=>'登陆成功',
 				                        'data'=>$user->toArray(),
-				                        'totalCount'=>$user->count,
+				                        'totalCount'=>$user->count(),
 			));
 		}
 		else
@@ -64,14 +64,59 @@ class UsersController extends \BaseController {
 
 	public function postRegister()
 	{
-		$phone = Input::get('phone');
-		$password = Input::get('password');
-		$smscode = Input::get('smscode');
-		$code = Smscode::where('phone', $phone)->where('smscode', $smscode)->first();
-		if($code) {
-			$user = new User;
-			$user->phone = $phone;
-			$user->password= Hash::make($password);
+
+		$validation = Validator::make(
+			Input::all(),
+			array(
+					'phone' => 'required|unique:users,phone',
+					'password' => 'required',	
+					'smscode' => 'required',			)		
+			);
+
+		if ($validation->passes())
+		{
+				$phone = Input::get('phone');
+				$password = Input::get('password');
+				$smscode = Input::get('smscode');
+				$rand = rand(0,1);
+				if($rand) {
+					$time = time() - 3600;
+					$time = date('Y-m-d H:i:s', $time);
+					#删除过期验证码
+					Smscode::where('created_at', '<' $time)->delete();
+				}
+
+				$code = Smscode::where('phone', $phone)->where('smscode', $smscode)->first();
+
+				if($code) {
+					Smscode::find($code->id)->delete();
+					$user = new User;
+					$user->phone = $phone;
+					$user->password= Hash::make($password);
+					$user->name = '';
+					$user->nickname = '';
+					$user->avatar = '';
+					$user->email = '';
+					$user->surplus_coin_num = 0;
+					$user->cash_coin_num = 0;
+					$user->weixin = '';
+					$user->sinaweibo = '';
+					$user->tencentweibo = '';
+					$user->qq = '';
+					$user->qqzone = '';
+					$user->douban = '';
+					$user->renren = '';
+					$user->save();
+
+					return Response::json(array('errorno'=>'0', 'errormsg'=>'注册成功', 'data'=>$user->toArray(), 'totalCount'=>$user->count()));
+				} else {
+					#验证码不正确
+					return Response::json(array('errorno'=>'1004', 'errormsg'=>'验证码错误', 'data'=>array(), 'totalCount'=>0));
+				}
+		} 
+		else
+		{
+			return Response::json(array('errorno'=>'1004', 'errormsg'=>'手机号码已被注册', 'data'=>array(), 'totalCount'=>0));
 		}
 
 	}

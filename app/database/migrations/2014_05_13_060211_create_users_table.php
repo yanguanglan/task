@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration {
 			$table->string('password');
 			$table->string('remember_token')->nullable();
 			$table->string('avatar');
-			$table->string('phone');
+			$table->string('phone')->unique();
 			$table->string('email');
 			$table->integer('surplus_coin_num');
 			$table->integer('cash_coin_num');
