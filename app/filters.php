@@ -38,6 +38,26 @@ Route::filter('auth', function()
 	if (Auth::guest()) return Redirect::guest('login');
 });
 
+Route::filter('auth.api', function()
+{
+	if (!Request::input('remember_token')) {
+		return Response::json(array('errorno'=>'1002', 
+				                        'errormsg'=>'非法请求',
+				                        'data'=>array(),
+				                        'totalCount'=>0,
+		));
+	} else {
+		$user = User::where('remember_token', Request::input('remember_token'))->first();
+		if (!$user)
+		{
+			return Response::json(array('errorno'=>'1002', 
+				                        'errormsg'=>'非法请求',
+				                        'data'=>array(),
+				                        'totalCount'=>0,
+		));
+		}
+	}
+});
 
 Route::filter('auth.basic', function()
 {

@@ -17,6 +17,30 @@ class UsersController extends \BaseController {
 		));
 	}
 
+	public function postLogin()
+	{
+		$user = array(
+			'phone'    => Input::get('phone'),
+			'password' => Input::get('password')
+		);
+
+		if (Auth::attempt($user)) 
+		{	
+			$user = User::find(Auth::user()->id);
+			$user->remember_token = md5(Auth::user()->id . $time());
+			$user->save();
+			return Response::json(array('errorno'=>'0', 
+				                        'errormsg'=>'登陆成功',
+				                        'data'=>$user->toArray(),
+				                        'totalCount'=>$user->count,
+			));
+		}
+		else
+		{   
+			return Response::json(array('errorno'=>'1001', 'errormsg'=>'登录失败', 'data'=>array(), 'totalCount'=>0));
+		}
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *

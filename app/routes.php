@@ -25,10 +25,15 @@ Route::resource('Usertasks', 'UsertasksController');
 
 Route::group(array('prefix' => 'v1'), function()
 {
-	Route::resource('users', 'UsersController');
-	Route::resource('tasks', 'TasksController');
-	Route::resource('Merchants', 'MerchantsController');
-	Route::resource('Userbanks', 'UserbanksController');
-	Route::resource('Usercashes', 'UsercashesController');
-	Route::resource('Usertasks', 'UsertasksController');
+	#登陆
+	Route::post('login', 'UsersController@postLogin');
+	Route::group(array('before' => 'auth.api'), function()
+	{
+		Route::resource('users', 'UsersController');
+		Route::resource('tasks', 'TasksController');
+		Route::resource('Merchants', 'MerchantsController');
+		Route::resource('Userbanks', 'UserbanksController');
+		Route::resource('Usercashes', 'UsercashesController');
+		Route::resource('Usertasks', 'UsertasksController');
+    });
 });
