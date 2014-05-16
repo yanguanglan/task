@@ -27,6 +27,11 @@ Route::group(array('prefix' => 'v1'), function()
 {
 	#登陆
 	Route::post('login', 'UsersController@postLogin');
+	#发送验证码
+	Route::get('smscode/{phone}', 'UsersController@getSmscode');
+	#注册
+	Route::post('register', 'UsersController@postRegister');
+
 	Route::group(array('before' => 'auth.api'), function()
 	{
 		Route::resource('users', 'UsersController');

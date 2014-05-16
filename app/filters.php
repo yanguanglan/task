@@ -98,3 +98,15 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+//手机注册 发送验证码
+function sendPhoneCode($phone,$content){
+	$res_code_arr = array('0'=>'发送成功','-1'=>'用户名或密码错误','-2'=>'发送短信余额不足','-6'=>'参数有误','-7'=>'权限受限','-8'=>'Ip失败','-11'=>'内部数据库错误');
+	$name ="3SDK-EMY-0130-OESPR";
+	$pwd  ="zchlodVYrx";
+	$msg  =rawurlencode($content);
+	$res = file_get_contents('http://sdkhttp.eucp.b2m.cn/sdkproxy/sendsms.action?cdkey='.$name.'&password='.$pwd.'&phone='.$phone.'&message='.$msg);
+	$xml = simplexml_load_string(trim($res));
+	$res = (int)$xml->error;
+	return $res == 0 ? true : false;
+}
