@@ -32,7 +32,7 @@ class UsersController extends \BaseController {
 			return Response::json(array('errorno'=>'0', 
 				                        'errormsg'=>'登陆成功',
 				                        'data'=>$user->toArray(),
-				                        'totalCount'=>$user->count(),
+				                        'totalCount'=>1,
 			));
 		}
 		else
@@ -108,7 +108,7 @@ class UsersController extends \BaseController {
 					$user->renren = '';
 					$user->save();
 
-					return Response::json(array('errorno'=>'0', 'errormsg'=>'注册成功', 'data'=>$user->toArray(), 'totalCount'=>$user->count()));
+					return Response::json(array('errorno'=>'0', 'errormsg'=>'注册成功', 'data'=>$user->toArray(), 'totalCount'=>1));
 				} else {
 					#验证码不正确
 					return Response::json(array('errorno'=>'1004', 'errormsg'=>'验证码错误', 'data'=>array(), 'totalCount'=>0));
