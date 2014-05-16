@@ -83,7 +83,7 @@ class UsersController extends \BaseController {
 					$time = time() - 3600;
 					$time = date('Y-m-d H:i:s', $time);
 					#删除过期验证码
-					Smscode::where('created_at', '<' $time)->delete();
+					Smscode::where('created_at', '<', $time)->delete();
 				}
 
 				$code = Smscode::where('phone', $phone)->where('smscode', $smscode)->first();
