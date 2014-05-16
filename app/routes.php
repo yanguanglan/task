@@ -23,6 +23,12 @@ Route::resource('Userbanks', 'UserbanksController');
 Route::resource('Usercashes', 'UsercashesController');
 Route::resource('Usertasks', 'UsertasksController');
 
-Route::group(array('prefix' => 'api'), function()
+Route::group(array('prefix' => 'v1'), function()
 {
+	Route::resource('users', 'UsersController');
+	Route::resource('tasks', 'TasksController');
+	Route::resource('Merchants', 'MerchantsController');
+	Route::resource('Userbanks', 'UserbanksController');
+	Route::resource('Usercashes', 'UsercashesController');
+	Route::resource('Usertasks', 'UsertasksController');
 });

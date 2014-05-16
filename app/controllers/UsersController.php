@@ -10,6 +10,11 @@ class UsersController extends \BaseController {
 	public function index()
 	{
 		//
+		$list = User::All();
+		return Response::json(array(
+	        'data' => $list->toArray(),
+	        'totalCount'=> $list->count()
+		));
 	}
 
 	/**
