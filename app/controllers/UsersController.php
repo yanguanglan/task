@@ -49,10 +49,10 @@ class UsersController extends \BaseController {
 		
 		if(sendPhoneCode($phone, $content))
 		{
-			Smscode::create(array(
-				'phone' => $phone,
-				'smscode' => $code
-			));
+			$smscode = new Smscode;
+			$smscode->phone = $phone,
+			$smscode->smscode = $code
+			$smscode->save();
 
 			return Response::json(array('errorno'=>'0', 'errormsg'=>'验证码发送成功', 'data'=>array(), 'totalCount'=>0));
 
