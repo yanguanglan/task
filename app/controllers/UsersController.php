@@ -54,7 +54,7 @@ class UsersController extends \BaseController {
 			$smscode->smscode = $code;
 			$smscode->save();
 
-			return Response::json(array('errorno'=>'0', 'errormsg'=>'验证码发送成功', 'data'=>array(), 'totalCount'=>0));
+			return Response::json(array('errorno'=>'0', 'errormsg'=>'验证码发送成功', 'data'=>array('expiration_date'=>'60'), 'totalCount'=>1));
 
 		} else {
 			return Response::json(array('errorno'=>'1003', 'errormsg'=>'验证码发送失败', 'data'=>array(), 'totalCount'=>0));
