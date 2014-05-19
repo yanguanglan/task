@@ -50,8 +50,8 @@ class UsersController extends \BaseController {
 		if(sendPhoneCode($phone, $content))
 		{
 			$smscode = new Smscode;
-			$smscode->phone = $phone,
-			$smscode->smscode = $code
+			$smscode->phone = $phone;
+			$smscode->smscode = $code;
 			$smscode->save();
 
 			return Response::json(array('errorno'=>'0', 'errormsg'=>'验证码发送成功', 'data'=>array(), 'totalCount'=>0));
