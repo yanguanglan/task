@@ -14,7 +14,7 @@ class CreateSmscodesTable extends Migration {
 	{
 		Schema::create('smscodes', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('iphone');
+			$table->string('phone');
 			$table->string('smscode');
 			$table->timestamps();
 		});
