@@ -33,9 +33,21 @@ Route::group(array('prefix' => 'v1'), function()
 	Route::post('register', 'UsersController@postRegister');
 	#修改密码
 	Route::post('password', 'UsersController@postPassword');
-	
+
 	Route::group(array('before' => 'auth.api'), function()
 	{	
+		#修改密码 {password, newpassword} remember_token
+		Route::post('repassword', 'UsersController@postRepassword');
+
+		#更新个人信息 {除去avatar, phone, password之外的字段} remember_token
+		Route::post('profile', 'UsersController@postProfile');
+ 
+		#退出登陆 remember_token
+		Route::post('logout', 'UsersController@postLogout');
+		
+		#更新头像 {avatar} remember_token
+		Route::post('avatar', 'UsersController@postAvatar');
+
 
 		Route::resource('users', 'UsersController');
 		Route::resource('tasks', 'TasksController');
