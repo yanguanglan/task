@@ -93,7 +93,7 @@ class UsersController extends \BaseController {
 					$user = new User;
 					$user->phone = $phone;
 					$user->password= Hash::make($password);
-					$user->name = '';
+					$user->username = '';
 					$user->nickname = '';
 					$user->avatar = '';
 					$user->email = '';
