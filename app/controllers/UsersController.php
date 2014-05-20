@@ -111,7 +111,7 @@ class UsersController extends \BaseController {
 					return Response::json(array('errorno'=>'0', 'errormsg'=>'注册成功', 'data'=>$user->toArray(), 'totalCount'=>1));
 				} else {
 					#验证码不正确
-					return Response::json(array('errorno'=>'1004', 'errormsg'=>'验证码错误', 'data'=>array(), 'totalCount'=>0));
+					return Response::json(array('errorno'=>'1004', 'errormsg'=>'验证码错误', 'data'=>array('time'=>$time), 'totalCount'=>0));
 				}
 		} 
 		else
