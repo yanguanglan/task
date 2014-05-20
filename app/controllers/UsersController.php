@@ -126,7 +126,7 @@ class UsersController extends \BaseController {
 		$user = User::where('remember_token', Request::input('remember_token'))->first();
 		if (Hash::check(Input::get('password'), $user->password))
 		{
-		    $user->password = Hash::make(Input::get('password'));
+		    $user->password = Hash::make(Input::get('newpassword'));
 		    $user->save();
 		    return Response::json(array('errorno'=>'0', 'errormsg'=>'修改密码成功', 'data'=>array(), 'totalCount'=>0));
 		}
