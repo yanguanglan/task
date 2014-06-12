@@ -54,7 +54,7 @@ Route::group(array('prefix' => 'v1'), function()
 		#显示
 		Route::get('userbankshow/{id}', 'UserbanksController@show');
 		#更新
-		Route::post('userbankupdate/{id}' 'UserbanksController@update');
+		Route::post('userbankupdate/{id}', 'UserbanksController@update');
 		#删除
 		Route::post('userbankdel/{id}', 'UserbanksController@destroy');
 
