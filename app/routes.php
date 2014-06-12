@@ -48,11 +48,19 @@ Route::group(array('prefix' => 'v1'), function()
 		#更新头像 {avatar} remember_token
 		Route::post('avatar', 'UsersController@postAvatar');
 
+		#用户添加银行卡/支付宝 更新 删除
+		#添加
+		Route::post('userbankadd', 'UserbanksController@store');
+		#显示
+		Route::get('userbankshow/{id}', 'UserbanksController@show');
+		#更新
+		Route::post('userbankupdate/{id}' 'UserbanksController@update');
+		#删除
+		Route::post('userbankdel/{id}', 'UserbanksController@destroy');
 
 		Route::resource('users', 'UsersController');
 		Route::resource('tasks', 'TasksController');
 		Route::resource('Merchants', 'MerchantsController');
-		Route::resource('Userbanks', 'UserbanksController');
 		Route::resource('Usercashes', 'UsercashesController');
 		Route::resource('Usertasks', 'UsertasksController');
     });

@@ -29,7 +29,32 @@ class UserbanksController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		//input
+		$user_id = Input::get('uid');
+		$type = Input::get('type');
+		$userName = Input::get('userName');
+		$idCard = Input::get('idCard', '');
+		$province = Input::get('province', '');
+		$city = Input::get('city', '');
+		$bankName = Input::get('bankName', '');
+		$depositBank = Input::get('depositBank', '');
+		$cardNum = Input::get('cardNum');
+
+		//添加数据
+		$userbank = new Userbank();
+		$userbank->user_id = $user_id;
+		$userbank->type = $type;
+		$userbank->userName = $userName;
+		$userbank->idCard = $idCard;
+		$userbank->province = $province;
+		$userbank->city = $city;
+		$userbank->bankName = $bankName;
+		$userbank->depositBank = $depositBank;
+		$userbank->cardNum = $cardNum;
+		$userbank->save();
+
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'添加成功', 'data'=>$userbank->toArray(), 'totalCount'=>1));
+
 	}
 
 	/**
@@ -40,7 +65,9 @@ class UserbanksController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		//获取数据
+		$userbank = Userbank::find($id);
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据成功', 'data'=>$userbank->toArray(), 'totalCount'=>1));
 	}
 
 	/**
@@ -62,7 +89,28 @@ class UserbanksController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		//更新数据
+		//input
+		$userName = Input::get('userName');
+		$idCard = Input::get('idCard', '');
+		$province = Input::get('province', '');
+		$city = Input::get('city', '');
+		$bankName = Input::get('bankName', '');
+		$depositBank = Input::get('depositBank', '');
+		$cardNum = Input::get('cardNum');
+
+		//更新数据
+		$userbank = Userbank::find($id);
+		$userbank->userName = $userName;
+		$userbank->idCard = $idCard;
+		$userbank->province = $province;
+		$userbank->city = $city;
+		$userbank->bankName = $bankName;
+		$userbank->depositBank = $depositBank;
+		$userbank->cardNum = $cardNum;
+		$userbank->save();
+
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'更新成功', 'data'=>$userbank->toArray(), 'totalCount'=>1));
 	}
 
 	/**
@@ -73,7 +121,10 @@ class UserbanksController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		//删除数据
+		Userbank::find($id)->delete();
+
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'删除成功', 'data'=>array(), 'totalCount'=>1));
 	}
 
 }
