@@ -7,9 +7,13 @@ class UserbanksController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($user_id)
 	{
 		//
+		$userbank = Userbank::where('user_id', $user_id)->get();
+
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据列表成功', 'data'=>$userbank->toArray(), 'totalCount'=>count($userbank)));
+
 	}
 
 	/**
