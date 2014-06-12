@@ -50,7 +50,7 @@ Route::group(array('prefix' => 'v1'), function()
 
 		#用户添加银行卡/支付宝 更新 删除
 		#列表
-		Route::get('userbanklist/{user_id}', 'UserbanksController@index')
+		Route::get('userbanklist/{user_id}', 'UserbanksController@index');
 		#添加
 		Route::post('userbankadd', 'UserbanksController@store');
 		#显示
