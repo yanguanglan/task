@@ -66,7 +66,7 @@ class UserbanksController extends \BaseController {
 	public function show($id)
 	{
 		//获取数据
-		$userbank = Userbank::find($id);
+		$userbank = Userbank::findOrFail($id);
 		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据成功', 'data'=>$userbank->toArray(), 'totalCount'=>1));
 	}
 
@@ -100,7 +100,7 @@ class UserbanksController extends \BaseController {
 		$cardNum = Input::get('cardNum');
 
 		//更新数据
-		$userbank = Userbank::find($id);
+		$userbank = Userbank::findOrFail($id);
 		$userbank->userName = $userName;
 		$userbank->idCard = $idCard;
 		$userbank->province = $province;
