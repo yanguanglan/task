@@ -17,7 +17,8 @@ class CreateUsercashesTable extends Migration {
 			$table->integer('user_id');
 			$table->integer('userbank_id');
 			$table->integer('cashCoins');
-			$table->boolean('status');
+			$table->boolean('status')->default(0);
+			$table->text('comment')->nullable();
 			$table->timestamps();
 		});
 	}

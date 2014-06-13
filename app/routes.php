@@ -59,6 +59,11 @@ Route::group(array('prefix' => 'v1'), function()
 		Route::post('userbankupdate/{id}', 'UserbanksController@update');
 		#删除
 		Route::post('userbankdel/{id}', 'UserbanksController@destroy');
+		#提现列表
+		Route::get('usercasheslist/{user_id}', 'UsercashesController@index');
+		#提现
+		Route::post('usercashesadd', 'UsercashesController@store');
+
 
 		Route::resource('users', 'UsersController');
 		Route::resource('tasks', 'TasksController');

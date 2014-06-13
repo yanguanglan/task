@@ -20,7 +20,7 @@ class UserbanksTableSeeder extends Seeder {
 				'idCard'=> $faker->creditCardNumber,
 				'province'=>$faker->country,
 				'city'=> $faker->city,
-				'bankName' => $faker->bankName, 
+				'bankName' => $faker->title, 
 				'depositBank' => $faker->title, 
 				'cardNum' => $faker->creditCardNumber
 			));

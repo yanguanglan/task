@@ -18,6 +18,7 @@ class UsercashesTableSeeder extends Seeder {
 				'userbank_id' => rand(1, 10),
 				'cashCoins' => $faker->randomDigitNotNull,
 				'status'=> $faker->boolean(50),
+				'comment'=> $faker->text(15),
 			));
 		}
 	}
