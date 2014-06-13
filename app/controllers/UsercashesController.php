@@ -7,7 +7,7 @@ class UsercashesController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($user_id)
 	{
 		//
 		$usercashe = usercashe::where('user_id', $user_id)->get();
