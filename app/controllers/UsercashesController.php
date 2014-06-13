@@ -10,7 +10,7 @@ class UsercashesController extends \BaseController {
 	public function index($user_id)
 	{
 		//
-		$usercashe = usercashe::where('user_id', $user_id)->get();
+		$usercashe = Usercash::where('user_id', $user_id)->get();
 
 		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据列表成功', 'data'=>$usercashe->toArray(), 'totalCount'=>count($usercashe)));
 
