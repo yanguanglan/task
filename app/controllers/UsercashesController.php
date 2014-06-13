@@ -34,8 +34,8 @@ class UsercashesController extends \BaseController {
 	public function store()
 	{
 		//
-		$user_id = Input::get('user_id');
-		$userbank_id = Input::get('userbank_id');
+		$user_id = Input::get('uid');
+		$userbank_id = Input::get('userBankId');
 		$cashCoins = Input::get('cashCoins');
 
 		#获得用户账户金额
