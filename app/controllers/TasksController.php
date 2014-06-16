@@ -17,14 +17,14 @@ class TasksController extends \BaseController {
 			$tasks = Task::where('type', $type)->paginate(20);
 		}
 
-		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据列表成功', 'data'=>$tasks->toArray(), 'totalCount'=>count($tasks));
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据列表成功', 'data'=>$tasks->toArray(), 'totalCount'=>count($tasks)));
 	}
 
 	#商家下面的任务
 	public function merchanttask($merchant_id)
 	{
 		$tasks = Task::where('merchant_id', $merchant_id)->paginate(20);
-		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据列表成功', 'data'=>$tasks->toArray(), 'totalCount'=>count($tasks));
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据列表成功', 'data'=>$tasks->toArray(), 'totalCount'=>count($tasks)));
 	}
 
 	/**
