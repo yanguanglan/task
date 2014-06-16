@@ -56,7 +56,7 @@ class TasksController extends \BaseController {
 	public function show($id)
 	{
 		//
-		$task = Task::find($id);
+		$task = Task::find($id)->with('merchant');
 		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据成功', 'data'=>$task->toArray(), 'totalCount'=>1));
 	}
 
