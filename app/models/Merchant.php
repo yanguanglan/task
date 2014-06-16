@@ -5,6 +5,6 @@ class Merchant extends \Eloquent {
 
 	public function task()
 	{
-		return $this->belongsToMany('Task');
+		return $this->hasMany('Task');
 	}
 }
