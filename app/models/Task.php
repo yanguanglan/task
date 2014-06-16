@@ -5,6 +5,6 @@ class Task extends \Eloquent {
 
 	public function merchant()
 	{
-		$this->hasOne('Merchant');
+		return $this->hasOne('Merchant');
 	}
 }
