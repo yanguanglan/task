@@ -16,6 +16,9 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
+#Route::get('taskshow/{id}', 'TasksController@show');
+
+
 Route::resource('users', 'UsersController');
 Route::resource('tasks', 'TasksController');
 Route::resource('Merchants', 'MerchantsController');
