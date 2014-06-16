@@ -11,7 +11,7 @@ class TasksController extends \BaseController {
 	{
 		//
 		if($type) {
-			$tasks = Task::all()->paginate(20);
+			$tasks = Task::paginate(20);
 		}
 		else {
 			$tasks = Task::where('type', $type)->paginate(20);
