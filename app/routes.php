@@ -64,6 +64,14 @@ Route::group(array('prefix' => 'v1'), function()
 		#提现
 		Route::post('usercashesadd', 'UsercashesController@store');
 
+		#任务列表
+		Route::get('tasklist', 'TasksController@index');
+		#任务详情
+		Route::get('taskshow/{id}', 'TasksController@show');
+		#商家下的任务
+		#Route::get('merchanttask/{merchant_id}', 'TasksController@merchanttask');
+		#用户任务列表
+		Route::get('usertasklist/{user_id}', 'UsertasksController@index');
 
 		Route::resource('users', 'UsersController');
 		Route::resource('tasks', 'TasksController');

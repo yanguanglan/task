@@ -10,6 +10,9 @@ class TasksController extends \BaseController {
 	public function index()
 	{
 		//
+		$tasks = Task::all();
+
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据列表成功', 'data'=>$tasks->toArray(), 'totalCount'=>$task->count()));
 	}
 
 	/**
@@ -41,6 +44,8 @@ class TasksController extends \BaseController {
 	public function show($id)
 	{
 		//
+		$task = Task::find($id);
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据成功', 'data'=>$task->toArray(), 'totalCount'=>1));
 	}
 
 	/**

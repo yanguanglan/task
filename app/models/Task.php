@@ -2,4 +2,9 @@
 
 class Task extends \Eloquent {
 	protected $fillable = array();
+
+	public function merchant()
+	{
+		$this->belongsTo('Merchant');
+	}
 }
