@@ -75,6 +75,8 @@ Route::group(array('prefix' => 'v1'), function()
 		Route::get('merchanttask/{merchant_id}', 'TasksController@merchanttask');
 		#用户任务列表
 		Route::get('usertasklist/{user_id}/{status?}', 'UsertasksController@index');
+		#商家详情
+		Route::get('merchantshow/{id}', 'MerchantsController@show');
 
 		Route::resource('users', 'UsersController');
 		Route::resource('tasks', 'TasksController');

@@ -40,7 +40,9 @@ class MerchantsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$merchant = Merchant::find($id);
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据成功', 'data'=>$merchant->toArray(), 'totalCount'=>1));
+	
 	}
 
 	/**
