@@ -8,4 +8,9 @@ class Task extends \Eloquent {
 	{
 		return $this->belongsTo('Merchant');
 	}
+
+	public function users()
+	{
+		return $this->belongsToMany('User', 'user_task');
+	}
 }

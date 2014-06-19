@@ -10,7 +10,11 @@ class UsertasksController extends \BaseController {
 	public function index($user_id, $status = 0)
 	{
 		//
-		$usertask = Usertask::where('user_id', $user_id)->where('status', $status)->paginate(20);
+		//$usertask = Usertask::where('user_id', $user_id)->where('status', $status)->paginate(20);
+		$usertask = User::find($user_id)->tasks()->where('status', $status)->paginate(20);
+
+
+
 		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据列表成功', 'data'=>$usertask->toArray(), 'totalCount'=>count($usertask)));
 	}
 
