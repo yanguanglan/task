@@ -17,7 +17,7 @@ Route::get('/', function()
 });
 
 #Route::get('taskshow/{id}', 'TasksController@show');
-
+Route::get('usertasklist/{user_id}/{status?}', 'UsertasksController@index');
 
 Route::resource('users', 'UsersController');
 Route::resource('tasks', 'TasksController');
