@@ -10,7 +10,7 @@ class UsertasksController extends \BaseController {
 	public function index($user_id, $status = 0)
 	{
 		//
-		$usertask = Usertask::where('user_id', $user_id)->where('status', $status)->tasks()->paginate(20);
+		$usertask = Usertask::where('user_id', $user_id)->where('status', $status)->paginate(20);
 		//$usertask = Usertasks::find($user_id)->tasks()->paginate(20);
 
 
