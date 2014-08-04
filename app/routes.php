@@ -16,7 +16,7 @@ Route::get('/', function()
 	echo 'ok';
 	//return View::make('hello');
 });
-Route::get('usertask', 'UsertasksController@gettask');
+#Route::get('usertask', 'UsertasksController@gettask');
 #Route::get('taskshow/{id}', 'TasksController@show');
 Route::get('usertasklist/{user_id}/{status?}', 'UsertasksController@index');
 
