@@ -78,6 +78,11 @@ Route::group(array('prefix' => 'v1'), function()
 		#商家详情
 		Route::get('merchantshow/{id}', 'MerchantsController@show');
 
+		#领取任务
+		Route::post('usertask', 'UsertasksController@gettask')
+
+		#转发成功上传数据
+
 		Route::resource('users', 'UsersController');
 		Route::resource('tasks', 'TasksController');
 		Route::resource('Merchants', 'MerchantsController');

@@ -17,6 +17,30 @@ class UsertasksController extends \BaseController {
 		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据列表成功', 'data'=>$usertask->toArray(), 'totalCount'=>count($usertask)));
 	}
 
+	public function gettask()
+	{
+		$user_id = Input::get('user_id');
+		$task_id = Input::get('task_id');
+
+		$find = Usertask::where('user_id', $user_id)->where('task_id', $task_id)->get();
+
+		if(isset($find[0]->id)) {
+			return Response::json(array('errorno'=>'2001', 'errormsg'=>'已经领取过任务', 'data'=>array(), 'totalCount'=>0));
+		} 
+		else
+		{
+			#领取任务
+			$usertask = new Usertask;
+			$usertask->user_id = $user_id;
+			$usertask->task_id = $task_id;
+			$usertask->status = 0;
+			$usertask->process = 1;
+			$usertask->save();
+		}
+
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'领取任务成功', 'data'=>$usertask->toArray(), 'totalCount'=>1));
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
