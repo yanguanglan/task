@@ -23,7 +23,6 @@ class UsertasksController extends \BaseController {
 		$task_id = Input::get('task_id');
 
 		$find = Usertask::where('user_id', $user_id)->where('task_id', $task_id)->get();
-
 		if(isset($find[0]->id)) {
 			return Response::json(array('errorno'=>'2001', 'errormsg'=>'已经领取过任务', 'data'=>array(), 'totalCount'=>0));
 		} 
@@ -56,7 +55,6 @@ class UsertasksController extends \BaseController {
 			$sharecount->status = $status;
 			$sharecount->identity = $identity;
 			$sharecount->save();
-		}
 
 		return Response::json(array('errorno'=>'0', 'errormsg'=>'领取任务成功', 'data'=>$sharecount->toArray(), 'totalCount'=>1));
 	}

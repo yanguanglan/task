@@ -13,7 +13,8 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	echo 'ok';
+	//return View::make('hello');
 });
 
 #Route::get('taskshow/{id}', 'TasksController@show');
