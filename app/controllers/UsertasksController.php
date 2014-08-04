@@ -16,7 +16,7 @@ class UsertasksController extends \BaseController {
 
 		return Response::json(array('errorno'=>'0', 'errormsg'=>'加载数据列表成功', 'data'=>$usertask->toArray(), 'totalCount'=>count($usertask)));
 	}
-
+	#领取任务
 	public function gettask()
 	{
 		$user_id = Input::get('user_id');
@@ -39,6 +39,26 @@ class UsertasksController extends \BaseController {
 		}
 
 		return Response::json(array('errorno'=>'0', 'errormsg'=>'领取任务成功', 'data'=>$usertask->toArray(), 'totalCount'=>1));
+	}
+	#转发统计
+	public function sharecount()
+	{
+		$user_id = Input::get('user_id');
+		$task_id = Input::get('task_id');
+		$channel = Input::get('channel');
+		$status = Input::get('status');
+		$identity = Input::get('identity');
+			#转发统计
+			$sharecount = new Sharecount;
+			$sharecount->user_id = $user_id;
+			$sharecount->task_id = $task_id;
+			$sharecount->channel = $channel;
+			$sharecount->status = $status;
+			$sharecount->identity = $identity;
+			$sharecount->save();
+		}
+
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'领取任务成功', 'data'=>$sharecount->toArray(), 'totalCount'=>1));
 	}
 
 	/**
