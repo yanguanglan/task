@@ -224,6 +224,16 @@ class UsersController extends \BaseController {
 	}
 
 	/**
+	 * 更新用户积分墙
+	 */
+	public function updatecoin()
+	{
+		$user_id = Input::get('user_id');
+		$user = User::find($user_id)->increment('surplus_coin_num');
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'更新用户金币值成功', 'data'=>$user->toArray(), 'totalCount'=>1));
+	}
+
+	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response

@@ -84,6 +84,9 @@ Route::group(array('prefix' => 'v1'), function()
 
 		#转发成功上传数据
 		Route::post('sharecount', 'UsertasksController@sharecount');
+		#更新用户积分墙金币
+		Route::post('updatecoin', 'UsersController@updatecoin');
+
 
 		Route::resource('users', 'UsersController');
 		Route::resource('tasks', 'TasksController');
