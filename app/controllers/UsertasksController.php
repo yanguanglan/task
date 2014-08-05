@@ -47,6 +47,7 @@ class UsertasksController extends \BaseController {
 		$channel = Input::get('channel');
 		$status = Input::get('status');
 		$identity = Input::get('identity');
+		$coin_num = Input::get('coin_num');
 			#转发统计
 			$sharecount = new Sharecount;
 			$sharecount->user_id = $user_id;
@@ -55,6 +56,15 @@ class UsertasksController extends \BaseController {
 			$sharecount->status = $status;
 			$sharecount->identity = $identity;
 			$sharecount->save();
+		//收入明细
+		if($status == 1) {
+			$accountdetail = new Accountdetail;
+			$accountdetail->user_id = $user_id;
+			$accountdetail->type = 1;
+			$accountdetail->typeId = 0;
+			$accountdetail->comeinCoins = $coin_num;
+			$accountdetail->save();
+	    }
 
 		return Response::json(array('errorno'=>'0', 'errormsg'=>'领取任务成功', 'data'=>$sharecount->toArray(), 'totalCount'=>1));
 	}

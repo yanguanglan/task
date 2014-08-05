@@ -19,6 +19,8 @@ Route::get('/', function()
 #Route::get('usertask', 'UsertasksController@gettask');
 #Route::get('taskshow/{id}', 'TasksController@show');
 Route::get('usertasklist/{user_id}/{status?}', 'UsertasksController@index');
+Route::get('accountdetail', 'UsersController@getaccountdetail');
+
 
 Route::resource('users', 'UsersController');
 Route::resource('tasks', 'TasksController');
@@ -86,7 +88,8 @@ Route::group(array('prefix' => 'v1'), function()
 		Route::post('sharecount', 'UsertasksController@sharecount');
 		#更新用户积分墙金币
 		Route::post('updatecoin', 'UsersController@updatecoin');
-
+		#获得用户收入明显
+		Route::get('accountdetail', 'UsersController@getaccountdetail');
 
 		Route::resource('users', 'UsersController');
 		Route::resource('tasks', 'TasksController');

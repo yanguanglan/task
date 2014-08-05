@@ -230,10 +230,29 @@ class UsersController extends \BaseController {
 	{
 		$user_id = Input::get('user_id');
 		$coin_num = Input::get('coin_num');
+		$typeId = Input::get('typeId');
 		$user = User::find($user_id);
 		$user->surplus_coin_num = $user->surplus_coin_num + $coin_num;
 		$user->save();
+		//收入明细
+		$accountdetail = new Accountdetail;
+		$accountdetail->user_id = $user_id;
+		$accountdetail->type = 2;
+		$accountdetail->typeId = $typeId;
+		$accountdetail->comeinCoins = $coin_num;
+		$accountdetail->save();
+
 		return Response::json(array('errorno'=>'0', 'errormsg'=>'更新用户金币值成功', 'data'=>$user->toArray(), 'totalCount'=>1));
+	}
+
+	/**
+	 * 获得用户收入明细
+	 */
+	public function getaccountdetail()
+	{
+		$user_id = Input::get('user_id');
+		$accountdetail = Accountdetail::where('user_id', $user_id)->get();
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'获得用户收入明显列表成功', 'data'=>$accountdetail->toArray(), 'totalCount'=>count($accountdetail)));
 	}
 
 	/**
