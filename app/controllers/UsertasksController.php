@@ -69,6 +69,13 @@ class UsertasksController extends \BaseController {
 		return Response::json(array('errorno'=>'0', 'errormsg'=>'领取任务成功', 'data'=>$sharecount->toArray(), 'totalCount'=>1));
 	}
 
+	public function posttasklink()
+	{	
+		$task_id = Input::get('task_id');
+		$user_id = Input::get('user_id');
+		$data = array('url'=>'http://www.51lianying.cn/index.php/microWeb/index?pageid=8015');
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'获取转发连接成功', 'data'=>$data, 'totalCount'=>1));
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 *

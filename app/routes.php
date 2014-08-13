@@ -83,13 +83,18 @@ Route::group(array('prefix' => 'v1'), function()
 
 		#领取任务
 		Route::post('usertask', 'UsertasksController@gettask');
-
 		#转发成功上传数据
 		Route::post('sharecount', 'UsertasksController@sharecount');
 		#更新用户积分墙金币
 		Route::post('updatecoin', 'UsersController@updatecoin');
 		#获得用户收入明显
 		Route::get('accountdetail', 'UsersController@getaccountdetail');
+		#获取任务转发连接
+		Route::post('usertasklink', 'UsertasksController@posttasklink');
+		#转发成功返回用户剩余金币数
+		Route::get('usercoin/{user_id}', 'UsersController@getuser');
+		#每日签到，并返回用户剩余金币数
+		Route::post('punch', 'UsersController@postpunch');
 
 		Route::resource('users', 'UsersController');
 		Route::resource('tasks', 'TasksController');

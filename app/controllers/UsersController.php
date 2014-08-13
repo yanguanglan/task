@@ -255,6 +255,19 @@ class UsersController extends \BaseController {
 		return Response::json(array('errorno'=>'0', 'errormsg'=>'获得用户收入明显列表成功', 'data'=>$accountdetail->toArray(), 'totalCount'=>count($accountdetail)));
 	}
 
+	public function getuser($user_id)
+	{
+		$user = User::find($user_id);
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'获得用户资料成功', 'data'=>$user->toArray(), 'totalCount'=>1));
+	}
+
+	public function postpunch()
+	{
+		$user_id = Input::get('user_id');
+		$user = User::find($user_id);
+		return Response::json(array('errorno'=>'0', 'errormsg'=>'获得用户资料成功', 'data'=>$user->toArray(), 'totalCount'=>1));
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
